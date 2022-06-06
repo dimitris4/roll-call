@@ -124,7 +124,6 @@ router.post('/api/users/register', (req, res) => {
 
 router.post('/api/users/login', (req, res) => {
   const { email, password } = req.body;
-  console.log(`login: email=${email} password=${password}`);
   checkEmail(email);
   if (!email || !password) {
     return res.status(422).send({ message: 'Must provide email and password' });
@@ -162,6 +161,7 @@ router.post('/api/users/login', (req, res) => {
                     secure: true,
                     maxAge: 24 * 60 * 60 * 1000 // 1 day
                   });
+                  console.log(`login successful for: email=${email} password=${password}`);
                   res.status(202).json({ claims: user, accessToken });
                 } else {
                   res.status(500).send({ message: 'Something went wrong' });
