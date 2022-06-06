@@ -1,4 +1,3 @@
-//
 const supertest = require('supertest');
 const server = require('../app');
 const { formatDate } = require('./helperMethods');

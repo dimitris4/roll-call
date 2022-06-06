@@ -124,6 +124,7 @@ router.post('/api/users/register', (req, res) => {
 
 router.post('/api/users/login', (req, res) => {
   const { email, password } = req.body;
+  console.log(`login: email=${email} password=${password}`);
   checkEmail(email);
   if (!email || !password) {
     return res.status(422).send({ message: 'Must provide email and password' });
