@@ -49,7 +49,7 @@ describe('GET /api/users/classes/courses/all/:teacherId', () => {
         expect(Array.isArray(response.body)).toBeTruthy();
         expect(response.body[0].course_id).toEqual(1);
         expect(response.body[0].class_id).toEqual(1);
-        expect(response.body[0].courseName).toEqual('Development of Large Systems');
+        expect(response.body[0].courseName).toEqual('Development of Large Systems1');
       })
       .catch(async (error) => {
         throw new Error(error);
