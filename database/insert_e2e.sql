@@ -29,16 +29,20 @@ INSERT INTO lectures (lecture_id, course_id, teacher_id, start_date_time, class_
 (4, 1, 1, DATE_SUB(CURDATE(), INTERVAL 10 DAY), 1),
 (5, 1, 1, DATE_SUB(CURDATE(), INTERVAL 15 DAY), 1),
 (6, 1, 1, DATE_SUB(CURDATE(), INTERVAL 32 DAY), 1),
-(7, 1, 1, DATE_ADD(now(), interval 2 hour), 1),
-(8, 1, 1, DATE_ADD(DATE_ADD(now(),interval 2 hour), INTERVAL 1 DAY), 1),
-(9, 1, 1, DATE_ADD(DATE_ADD(now(),interval 2 hour), INTERVAL 2 DAY), 1),
-(10, 1, 1, DATE_ADD(DATE_ADD(now(),interval 2 hour), INTERVAL 3 DAY), 1),
-(11, 1, 1, DATE_ADD(DATE_ADD(now(),interval 2 hour), INTERVAL 4 DAY), 1),
-(12, 1, 1, DATE_ADD(DATE_ADD(now(),interval 2 hour), INTERVAL 5 DAY), 1),
-(13, 1, 1, now(), 1);
+(7, 1, 1, DATE_ADD(now(), interval 1 minute), 1),
+(8, 1, 1, DATE_ADD(now(), interval 2 minute), 1),
+(9, 1, 1, DATE_ADD(now(), interval 3 minute), 1),
+(10, 1, 1, DATE_ADD(now(), interval 4 minute), 1),
+(11, 1, 1, DATE_ADD(now(), interval 5 minute), 1),
+(12, 1, 1, DATE_ADD(DATE_ADD(now(),interval 2 hour), INTERVAL 1 DAY), 1),
+(13, 1, 1, DATE_ADD(DATE_ADD(now(),interval 2 hour), INTERVAL 2 DAY), 1),
+(14, 1, 1, DATE_ADD(DATE_ADD(now(),interval 2 hour), INTERVAL 3 DAY), 1),
+(15, 1, 1, DATE_ADD(DATE_ADD(now(),interval 2 hour), INTERVAL 4 DAY), 1),
+(16, 1, 1, DATE_ADD(DATE_ADD(now(),interval 2 hour), INTERVAL 5 DAY), 1),
+(17, 1, 1, now(), 1);
 
 INSERT INTO attendance (user_id, lecture_id, is_attending) VALUES
-(2, 1, 1), (2, 2, 1), (2, 3, 1), (2, 4, 1), (2, 5, 1), (2, 6, 1),
+(2, 1, 1), (2, 2, 1), (2, 3, 1), (2, 4, 1), (2, 5, 1), (2, 6, 1), (2, 7, 1), (2, 8, 1), (2, 9, 1), (2, 10, 1), (2, 11, 1), (2, 12, 1),
 (3, 1, 1), (3, 2, 1), (3, 3, 1), (3, 4, 0), (3, 5, 0), (3, 6, 0),
 (4, 1, 0), (4, 2, 0), (4, 3, 0), (4, 4, 0), (4, 5, 0), (4, 6, 0),
 (2, 13, 0), (4, 13, 0);
