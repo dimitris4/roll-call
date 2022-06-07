@@ -1,10 +1,11 @@
 const { pool } = require('../database/connection');
 
+
 const saveTeacherToDB = () => new Promise((resolve, reject) => {
   pool.getConnection((err, db) => {
     const query = 'INSERT INTO users (first_name, last_name, email, user_role, password, class_id, date_of_birth) '
                 + 'VALUES ("Dimitrios", "Gkiokas", "dimi1@gmail.com", "TEACHER", "$2b$15$uC0sNjstRkK/EBRnCLFkWujCEL.grKhk8NdLSFIccXwVeCR/o6lde", NULL, "1996-10-10");';
-    db.query(query, (error, result, fields) => {
+    db.query(query, (error, result) => {
       if (error) {
         reject(error);
       }
@@ -24,7 +25,7 @@ const saveLectureToDB = (teacherId, dateTime, courseId, classId) => {
   return new Promise((resolve, reject) => {
     pool.getConnection((err, db) => {
       const query = `INSERT INTO lectures (teacher_id, start_date_time, course_id, class_id) VALUES (${teacherId},"${dateTime}", ${courseId}, ${classId});`;
-      db.query(query, (error, result, fields) => {
+      db.query(query, (error, result) => {
         if (error) {
           reject(error);
         }
@@ -39,7 +40,7 @@ const saveLectureToDB = (teacherId, dateTime, courseId, classId) => {
 const saveCourseToDB = (id, name) => new Promise((resolve, reject) => {
   pool.getConnection((err, db) => {
     const query = `INSERT INTO courses (course_id, name) VALUES (${id}, '${name}');`;
-    db.query(query, (error, result, fields) => {
+    db.query(query, (error) => {
       if (error) {
         reject(error);
       }
@@ -52,7 +53,7 @@ const saveCourseToDB = (id, name) => new Promise((resolve, reject) => {
 const saveClassToDB = (id, name) => new Promise((resolve, reject) => {
   pool.getConnection((err, db) => {
     const query = `INSERT INTO classes (class_id, name) VALUES (${id}, '${name}');`;
-    db.query(query, (error, result, fields) => {
+    db.query(query, (error) => {
       if (error) {
         reject(error);
       }
@@ -65,7 +66,7 @@ const saveClassToDB = (id, name) => new Promise((resolve, reject) => {
 const deleteLecturesFromDB = () => new Promise((resolve, reject) => {
   pool.getConnection((err, db) => {
     const query = 'DELETE FROM lectures;';
-    db.query(query, (error, result, fields) => {
+    db.query(query, (error) => {
       if (error) {
         reject(error);
       }
@@ -78,7 +79,7 @@ const deleteLecturesFromDB = () => new Promise((resolve, reject) => {
 const deleteTeachersFromDB = () => new Promise((resolve, reject) => {
   pool.getConnection((err, db) => {
     const query = 'DELETE FROM users;';
-    db.query(query, (error, result, fields) => {
+    db.query(query, (error) => {
       if (error) {
         reject(error);
       }
@@ -91,7 +92,7 @@ const deleteTeachersFromDB = () => new Promise((resolve, reject) => {
 const deleteCoursesFromDB = () => new Promise((resolve, reject) => {
   pool.getConnection((err, db) => {
     const query = 'DELETE FROM courses;';
-    db.query(query, (error, result, fields) => {
+    db.query(query, (error) => {
       if (error) {
         reject(error);
       }
@@ -104,7 +105,7 @@ const deleteCoursesFromDB = () => new Promise((resolve, reject) => {
 const deleteClassesFromDB = () => new Promise((resolve, reject) => {
   pool.getConnection((err, db) => {
     const query = 'DELETE FROM classes;';
-    db.query(query, (error, result, fields) => {
+    db.query(query, (error) => {
       if (error) {
         reject(error);
       }
@@ -123,7 +124,7 @@ const truncateTables = () => new Promise((resolve, reject) => {
           + 'TRUNCATE TABLE lectures; '
           + 'TRUNCATE TABLE attendance; '
           + 'SET FOREIGN_KEY_CHECKS=1;';
-    db.query(query, (error, result, fields) => {
+    db.query(query, (error, result) => {
       if (error) {
         reject(error);
       }
