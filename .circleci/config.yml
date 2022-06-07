@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  node: circleci/node@4.7.0
+  node: circleci/node@5.0.2
   heroku: circleci/heroku@1.2.6
   sonarcloud: sonarsource/sonarcloud@1.1.0
 jobs:
@@ -16,7 +16,7 @@ jobs:
       - run:
           name: Run Tests (Coverage, Unit test, Integration test)
           command: npm test
-      - sonarcloud/scan 
+      - sonarcloud/scan
 workflows:
   heroku_deploy:
     jobs:
@@ -25,4 +25,4 @@ workflows:
           requires:
             - run_tests
 
-        
+
