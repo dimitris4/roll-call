@@ -52,7 +52,7 @@ io.on('connection', (socket) => {
     do {
       code = Utilities.generateCode(10);
     } while (io.sockets.adapter.rooms.get(`${code}-${lectureId}`));
-    socket.join(`${code}-${lectureId}`);
+    socket.join(`${code}-${lectureId}`); // teacher joins room
     socket.emit('codeGenerated', { code, lectureId });
   }
 
