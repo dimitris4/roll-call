@@ -59,23 +59,21 @@ io.on('connection', (socket) => {
   function handleDeleteCode(data) {
     const sockets = io.sockets.adapter.rooms.get(`${data.code}-${data.lectureId}`);
     if (sockets && sockets.length) {
-      sockets.forEach(function (client) {
+      sockets.forEach((client) => {
         io.sockets.sockets.get(client).leave(`${data.code}-${data.lectureId}`);
       });
     }
   }
 
   async function handleAttendLecture(data) {
-    //select from database all unique lecture_ids for today - limit time somehow - start within 30 minutes ago
-    let url = `http://localhost:8080/api/lectures/today/${data.student.studentId}`;
+    // select from database all unique lecture_ids for today - limit time somehow - start within 30 minutes ago
+    const url = `http://localhost:8080/api/lectures/today/${data.student.studentId}`;
     response = await fetch(url);
     result = await response.json();
-    //look whether room with code and id exists - if yes then join else send error
+    // look whether room with code and id exists - if yes then join else send error
     if (!result.message) {
       const lectureIds = result.lectures;
-      const lectureId = lectureIds.find((id) =>
-        io.sockets.adapter.rooms.get(`${data.code}-${id.lecture_id}`)
-      );
+      const lectureId = lectureIds.find((id) => io.sockets.adapter.rooms.get(`${data.code}-${id.lecture_id}`));
       if (lectureId) {
         await studentAttendsAndJoins(data, lectureId);
       } else {
@@ -87,9 +85,9 @@ io.on('connection', (socket) => {
   }
 
   async function studentAttendsAndJoins(data, lectureId) {
-    //student part of the room - join room and update attendance
+    // student part of the room - join room and update attendance
     socket.join(`${data.code}-${lectureId.lecture_id}`);
-    let url = `${process.env.BACKEND_URL}/api/attendance/${lectureId.attendance_id}`;
+    const url = `${process.env.BACKEND_URL}/api/attendance/${lectureId.attendance_id}`;
     response = await fetch(url, {
       method: 'patch'
     });

@@ -1,6 +1,5 @@
 const { pool } = require('../database/connection');
 
-
 const saveTeacherToDB = () => new Promise((resolve, reject) => {
   pool.getConnection((err, db) => {
     const query = 'INSERT INTO users (first_name, last_name, email, user_role, password, class_id, date_of_birth) '

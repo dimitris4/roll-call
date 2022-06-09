@@ -21,20 +21,21 @@ describe('generateCode test', () => {
     { args: 101, expected: 0 },
     { args: 500, expected: 0 },
   ];
-    // Act + Assert
+  // Act + Assert
   testsDefinedValues.forEach(({ args, expected }) => {
     test(`generateCode with length ${args} and valid characters`, () => {
       expect(Utilities.generateCode(args).length).toEqual(expected);
       expect(Utilities.generateCode(args)).toMatch(allowedCharactersRegex);
     });
   });
+
   // Arrange
   const testsNonNumericValues = [
     { args: '' },
     { args: 'string' },
     { args: null },
   ];
-    // Act + Assert
+  // Act + Assert
   testsNonNumericValues.forEach(({ args }) => {
     test(`generateCode throws exception because non numeric value ${args}`, () => {
       expect(() => { Utilities.generateCode(args); }).toThrow('Passed parameter is not a number.');

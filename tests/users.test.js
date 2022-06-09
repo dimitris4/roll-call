@@ -102,7 +102,7 @@ describe('test handleStudentStats()', () => {
       }
     ]
   ])('%s', (attendance, data, result) => {
-    // Assert + Act
+    // Act + Assert
     expect(handleStudentStats(data)).toEqual(result);
   });
 
